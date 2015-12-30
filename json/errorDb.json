@@ -1,0 +1,35 @@
+{
+        "errorCodes" : [{
+            "code" : 200,
+            "info" : "Ok",
+            "desc" : "The request was successful and at least 1 item is being returned"
+        }, {
+            "code" : 400,
+            "info" : "Bad Request",
+            "desc" : "Sent when the consumer sends a malformed request to the service. The actual error message is returned in the response body"
+        }, {
+            "code" : 401,
+            "info" : "Unauthorised",
+            "desc" : "Returned when the consumer is not authenticated to use the API"
+        }, {
+            "code" : 403,
+            "info" : "Forbidden",
+            "desc" : "Returned when the consumer is authenticated but does not have permission to access the Resource"
+        }, {
+            "code" : 404,
+            "info" : "Not found",
+            "desc" : "Returned when no matching flights can be found e.g. request to get flight arrival information for a route we don't fly"
+        }, {
+            "code" : 406,
+            "info" : "Not Acceptable",
+            "desc" : "Returned when the Accept header contains version / mime type info which we don't support"
+        }, {
+            "code" : 500,
+            "info" : "Internal Server Error",
+            "desc" : "Something has gone wrong - please raise this as a bug with us"
+        },  {
+            "code" : 503,
+            "info" : "Service Unavailable",
+            "desc" : "Returned when the server is temporarily unable to handle the request"
+        }]
+}

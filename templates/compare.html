@@ -1,0 +1,62 @@
+<div ng-controller="StatisticsController">   
+<fieldset class="standard" style="text-transform : initial">
+    <legend>Compare flights</legend>
+    <div layout="column" layout-wrap layout-gt-sm="row" >
+        <div flex-xs flex="50">
+     <fieldset class="standard" style="text-transform : initial">
+            <legend>From</legend>
+			   <md-input-container md-no-float style="margin-right: 10px;">
+					<label>Departure</label>
+					<md-select ng-model="dAirport">
+						<md-option ng-repeat="airport in airportsArray" ng-value="{{airport}}">
+							{{airport.AirportCode}}
+						</md-option>
+					</md-select>
+			  </md-input-container>
+    </fieldset>
+        </div>
+    <div flex-xs flex="50">
+     <fieldset class="standard" style="text-transform : initial">
+        <legend>To</legend>
+         <md-input-container>
+				<label>Arrival</label>
+				<md-select ng-model="aAirport">
+					<md-option ng-repeat="airport in airportsArray" ng-value="{{airport}}">
+						{{airport.AirportCode}}
+					</md-option>
+				</md-select>
+		  </md-input-container>
+    </fieldset>
+    </div>
+</fieldset>
+	
+	
+<md-button style="float : right" ng-show="(dAirport.length>0) && (aAirport.length>0)"
+               ng-click="searchFlights()" class="md-raised">Go</md-button>
+
+<md-list>
+	<md-list-item ng-repeat="airways in airwaysList" layout="row">
+		<h3>{{componenet.tripInfo}}</h3>
+		<md-list id="flightsList">
+			<md-list-item ng-repeat="flight in airways" layout="column">
+				<md-list id="sector-list">
+					<md-list-item class="md-3-line" ng-repeat="sector in flight.sectors">
+						<div class="md-list-item-text" layout="column"  flex="50">
+							<h3>{{sector.dAirportName}} ({{sector.dAirportCode}})</h3>
+							<h4>{{sector.depStatus}} at Terminal {{sector.dTerminal}}</h4>
+							<p>{{sector.depDate}}<br>{{sector.depTime}}</p>
+						</div>
+						<div class="md-list-item-text" layout="column"  flex="50">
+							<h3>{{sector.aAirportName}} ({{sector.aAirportCode}})</h3>
+							<h4>{{sector.arrStatus}}  {{sector.aTerminal}}</h4>	
+							<p>{{sector.arrDate}}<br>{{sector.arrTime}}</p>
+						</div>
+						<md-divider ng-hide="$index == (flight.sectors.length - 1)"></md-divider>
+					</md-list-item>
+				</md-list> 
+				<md-divider id="itenerary-divider"></md-divider>
+			</md-list-item>
+		</md-list> 
+		<md-divider id="itenerary-divider"></md-divider>
+	</md-list-item>
+</md-list> 

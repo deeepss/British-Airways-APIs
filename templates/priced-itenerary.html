@@ -1,0 +1,56 @@
+<md-list>
+	<md-list-item ng-repeat="iternerary in iteneraryList">
+		<md-icon md-svg-src = 'images/swap-vertical.svg'></md-icon>
+		<md-list id="flight-list">
+			<md-list-item class="md-3-line" ng-repeat="segment in iternerary.journeySegment">
+				 <div class="md-list-item-text" layout="column">
+				  <h3>{{segment.airlineDetails.name}}</h3>
+				  <h4>{{segment.airlineDetails.number}}</h4>
+				</div>
+				<div class="md-list-item-text" layout="column">
+					<h3>{{segment.locDetails.start}}</h3>
+					<h4>{{segment.dateDetails.start}}</h4>
+					<p>{{segment.timeDetails.start}}</p>
+				</div>
+				<div class="md-list-item-text" layout="column">
+					<h3>{{segment.locDetails.end}}</h3>
+					<h4>{{segment.dateDetails.end}}</h4>
+					<p>{{segment.timeDetails.end}}</p>
+				</div>
+				<md-divider ng-hide="$index == (iternerary.journeySegment.length - 1)"></md-divider>
+			</md-list-item>
+		</md-list> 
+		<span flex></span>
+		<md-list id="fare-list">
+			<md-list-item class="md-3-line">
+			<div>
+				<p>Base fare : {{iternerary.priceInfo.baseFare}} {{iternerary.priceInfo.currency}}</p>
+				<p>Taxes : {{iternerary.priceInfo.tax}} {{iternerary.priceInfo.currency}}</p>
+				<p>Total : {{iternerary.priceInfo.total}} {{iternerary.priceInfo.currency}}</p>
+			</div>
+			</md-list-item>
+			<md-button class="md-warn md-raised md-hue-2">Book</md-button>
+		</md-list>
+		
+		<md-divider id="itenerary-divider"></md-divider>
+	</md-list-item>
+</md-list> 
+
+<style>
+	#flight-list {
+		text-align: center;
+		text-transform: capitalize;
+		width: 70%;	
+	}
+	
+	#fare-list {
+		text-transform: capitalize;
+		text-align: right;
+		float: right;
+	}
+	
+	#itenerary-divider {
+	    background-color: darkorange;
+    	height: 2px;
+	}
+</style>

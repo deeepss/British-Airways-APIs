@@ -1,0 +1,23 @@
+.flight-listItem {
+    border-radius: 2px;
+    background-color: rgb(218, 41, 28);
+    border: 1px solid #00205B;
+    box-shadow: 2px 2px 2px rgb(40,53,147);
+    margin-bottom: 5px;
+    color: white;
+}
+
+.sector-listItem {
+    border-bottom: 1px solid #38546d;
+    box-shadow: 2px 2px 2px rgba(40, 53, 147, 0.53);
+    background-color: rgba(0, 32, 91, 0.25);
+    color: white;
+    padding: 5px;
+    border-radius: 2px;
+    margin: 10px;
+}
+
+.verticalDivider {
+    box-shadow: 2px 0px 0px rgba(40, 53, 147, 0.37);
+    padding: 5px;
+}

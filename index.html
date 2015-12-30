@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+<!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link type="text/css" rel="stylesheet" href="css/styles.css" />
+		<link type="text/css" rel="stylesheet" href="css/form-css.css" />
+		<link type="text/css" rel="stylesheet" href="css/search-flight.css" />
+		<link type="text/css" rel="stylesheet" href="css/responsive-theme.css" />
+		<link type="text/css" rel="stylesheet" href="css/flightlists.css" />
+
+    	<script src="https://maps.googleapis.com/maps/api/js?key=<<YOUR API KEY>>"></script>
+		
+		<link href="https://fonts.googleapis.com/css?family=Roboto:light&lang=en" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="libs/css/angular-material-min.css" />
+		<link type="text/css" rel="stylesheet" href="libs/css/angular-material-calendar.css" />
+		
+        <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+        <title>Fly with British Airways</title>
+    </head>
+<body ng-app="ba-app" ng-controller="HomeController" ng-cloak>
+	<header>
+        Fly with British Airways
+        <md-button class="md-raised md-primary" ng-click="userLogin()" style="float: right">Login</md-button>
+    </header>
+    <div class="page container" ng-controller="FlightsController">
+        <div class="content container" id="dync-content">
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom md-selected="selectedIndex">
+              <md-tab label="Search">
+                <md-content class="md-padding"   
+                            ng-include = "'templates/default-search.html'">
+                </md-content>
+              </md-tab>
+              <md-tab label="Quickbook"  >
+                <md-content class="md-padding" 
+                            ng-include = "'templates/quickbook.html'">
+                </md-content>
+              </md-tab>
+              <md-tab label="Compare"  >
+                <md-content class="md-padding"
+							ng-include = "'templates/compare.html'">
+					
+                </md-content>
+              </md-tab>
+              </md-tabs>
+        </md-content>
+        </div>
+    </div>
+	
+	<script src="libs/angular/angular.js"></script>
+	<script src="libs/angular/material.min.js"></script>
+
+	<script src="libs/angular/angular-animate.min.js"></script>
+	<script src="libs/angular/angular-aria.min.js"></script>
+	<script src="libs/angular/angular-sanitize.min.js"></script>
+	<script src="libs/angular/angular-material.min.js"></script>
+	<script src="libs/angular/angular-material-calendar.js"></script>
+    
+	<script src="libs/angular/angular-messages.min.js"></script>
+	<script src="libs/angular/ng-map.min.js"></script>
+	
+	<script src="libs/bootstrap/pusher.min.js"></script>
+    
+    <script src="scripts/ba-app.js"></script> 
+    
+    <!-- Angular Services Library -->
+    <script src="scripts/services/BaFactory.js"></script> 
+    <script src="scripts/services/LuftahnsaFactory.js"></script> 
+    <script src="scripts/services/LocationServices.js"></script> 
+    <script src="scripts/services/Pusher-services.js"></script> 
+    
+    <!-- Angular Controller Library -->
+    
+    <script src="scripts/controllers/FlightsController.js"></script> 
+    <script src="scripts/controllers/SearchController.js"></script> 
+    <script src="scripts/controllers/QuickbookController.js"></script> 
+    <script src="scripts/controllers/CalanderController.js"></script> 
+    <script src="scripts/controllers/StatisticsController.js"></script> 
+	
+<!--
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+-->
+    </body>
+</html>

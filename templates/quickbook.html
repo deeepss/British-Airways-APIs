@@ -1,0 +1,32 @@
+<div ng-controller="QuickbookController">
+	<ng-map zoom="11"  center="myLocationInfo.pos" scrollwheel="false"
+	zoom-to-include-markers="true"></ng-map>
+	<md-autocomplete ng-model="dSearchLoc"
+		  ng-disabled="isDisabled"
+		  md-no-cache="noCache"
+		  md-selected-item="dSelectedItem"
+		  md-search-text-change="dSearchTextChange(dSearchText)"
+		  md-search-text="dSearchText"
+		  md-selected-item-change="dSelectedItemChange(item)"
+		  md-items="item in querySearch(dSearchText)"
+		  md-item-text="item.display"
+		  md-min-length="0"
+		  placeholder="Type the Airport code">
+	<md-item-template>
+	  <span md-highlight-text="dSearchText" md-highlight-flags="^i">{{item.display}}</span>
+	</md-item-template>
+	<md-not-found>
+	  No airports matching "{{dSearchText}}" were found.
+	</md-not-found>
+	</md-autocomplete>
+	<md-divider></md-divider>
+	<div class="md-padding">
+		<md-radio-group ng-model="mode" layout="row">
+		  <md-radio-button value="D" class="md-primary">Departure</md-radio-button>
+		  <md-radio-button value="A">Arrival</md-radio-button>
+		</md-radio-group>
+	</div>
+	<md-content class="md-padding" 
+				ng-include="'templates/flights-availability.html'">
+	</md-content>
+</div>

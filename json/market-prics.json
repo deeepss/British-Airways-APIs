@@ -1,0 +1,910 @@
+{
+    "OTA_AirLowFareSearchRS": {
+        "Success": "",
+        "PricedItineraries": {
+            "PricedItinerary": [{
+                "@SequenceNumber": "1",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T11:15:00",
+                                "@DepartureDateTime": "2015-12-16T08:20:00",
+                                "@FlightNumber": "117",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "744"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "2",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T13:30:00",
+                                "@DepartureDateTime": "2015-12-16T10:15:00",
+                                "@FlightNumber": "1516",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "3"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "American Airlines"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "77W"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "Economy"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "3",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T14:25:00",
+                                "@DepartureDateTime": "2015-12-16T11:20:00",
+                                "@FlightNumber": "113",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "744"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "4",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T16:05:00",
+                                "@DepartureDateTime": "2015-12-16T13:05:00",
+                                "@FlightNumber": "177",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "777"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "5",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T17:10:00",
+                                "@DepartureDateTime": "2015-12-16T13:55:00",
+                                "@FlightNumber": "173",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "777"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "6",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T18:00:00",
+                                "@DepartureDateTime": "2015-12-16T14:45:00",
+                                "@FlightNumber": "1506",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "3"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "American Airlines"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "77W"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "Economy"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "7",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T19:20:00",
+                                "@DepartureDateTime": "2015-12-16T16:10:00",
+                                "@FlightNumber": "115",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "777"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "8",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T20:30:00",
+                                "@DepartureDateTime": "2015-12-16T17:15:00",
+                                "@FlightNumber": "1510",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "3"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "American Airlines"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "77W"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "Economy"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "9",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T21:10:00",
+                                "@DepartureDateTime": "2015-12-16T18:00:00",
+                                "@FlightNumber": "179",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "777"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "10",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T22:05:00",
+                                "@DepartureDateTime": "2015-12-16T18:55:00",
+                                "@FlightNumber": "181",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "777"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }, {
+                "@SequenceNumber": "11",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-16T22:50:00",
+                                "@DepartureDateTime": "2015-12-16T19:55:00",
+                                "@FlightNumber": "183",
+                                "@ResBookDesigCode": "Y",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "JFK"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "744"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "M",
+                                        "@CabinName": "World Traveller"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "1030",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "217.76",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "1247.76",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "1"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "1030",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "217.76",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "1247.76",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }]
+        }
+    }
+}

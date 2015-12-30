@@ -1,0 +1,42 @@
+{
+    "FlightsResponse": {
+        "Flight": [{
+            "MarketingCarrierCode": "BA",
+            "FlightNumber": "0108",
+            "Sector": {
+                "DepartureStatus": "Actual",
+                "ArrivalStatus": "Estimated",
+                "DepartureAirport": "DXB",
+                "ArrivalAirport": "LHR",
+                "DepartureTerminal": 1,
+                "ArrivalTerminal": 5,
+                "ScheduledDepartureDateTime": "2015-12-13T10:05:00",
+                "ScheduledArrivalDateTime": "2015-12-13T14:10:00",
+                "ReportedDepartureDateTime": "2015-12-13T10:01:00",
+                "ReportedArrivalDateTime": "2015-12-13T13:56:00",
+                "OperatingCarrierCode": "BA",
+                "AircraftTypeCode": 777,
+                "MatchesRequest": true
+            }
+        }, {
+            "MarketingCarrierCode": "BA",
+            "FlightNumber": "0104",
+            "Sector": {
+                "DepartureStatus": "Estimated",
+                "ArrivalStatus": "Estimated",
+                "DepartureAirport": "DXB",
+                "ArrivalAirport": "LHR",
+                "DepartureTerminal": 1,
+                "ArrivalTerminal": 5,
+                "ScheduledDepartureDateTime": "2015-12-13T15:10:00",
+                "ScheduledArrivalDateTime": "2015-12-13T19:15:00",
+                "ReportedDepartureDateTime": "2015-12-13T15:10:00",
+                "ReportedArrivalDateTime": "2015-12-13T18:55:00",
+                "OperatingCarrierCode": "BA",
+                "AircraftTypeCode": 777,
+                "MatchesRequest": true
+            }
+        }],
+        "DataLastUpdated": "2015-12-13T09:04:09"
+    }
+}

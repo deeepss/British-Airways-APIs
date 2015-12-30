@@ -1,0 +1,37 @@
+{
+    "FlightsResponse": {
+        "Flight": {
+            "MarketingCarrierCode": "BA",
+            "FlightNumber": "0073",
+            "Sector": [{
+                "DepartureStatus": "Planned",
+                "ArrivalStatus": "Planned",
+                "DepartureAirport": "LHR",
+                "ArrivalAirport": "AUH",
+                "DepartureTerminal": 5,
+                "ArrivalTerminal": 1,
+                "ScheduledDepartureDateTime": "2015-12-15T09:40:00",
+                "ScheduledArrivalDateTime": "2015-12-15T20:55:00",
+                "ReportedDepartureDateTime": "2015-12-15T09:40:00",
+                "ReportedArrivalDateTime": "2015-12-15T20:55:00",
+                "OperatingCarrierCode": "BA",
+                "AircraftTypeCode": 789,
+                "MatchesRequest": true
+            }, {
+                "DepartureStatus": "Planned",
+                "ArrivalStatus": "Planned",
+                "DepartureAirport": "AUH",
+                "ArrivalAirport": "MCT",
+                "DepartureTerminal": 1,
+                "ScheduledDepartureDateTime": "2015-12-15T21:55:00",
+                "ScheduledArrivalDateTime": "2015-12-15T23:05:00",
+                "ReportedDepartureDateTime": "2015-12-15T21:55:00",
+                "ReportedArrivalDateTime": "2015-12-15T23:05:00",
+                "OperatingCarrierCode": "BA",
+                "AircraftTypeCode": 789,
+                "MatchesRequest": false
+            }]
+        },
+        "DataLastUpdated": "2015-12-12T04:03:50"
+    }
+}

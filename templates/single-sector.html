@@ -1,0 +1,9 @@
+<div layout="column" class="verticalDivider">
+    <p>Direct flight</p>
+    <p>{{filteredFlightsList[$index].FlightNumber}}</p>
+</div>
+<div layout="column" class="verticalDivider">
+    <md-button class="md-raised" >
+        {{filteredFlightsList[$index].Sector.DepartureAirport}} to {{filteredFlightsList[$index].Sector.ArrivalAirport}}
+    </md-button>
+</div>

@@ -1,0 +1,39 @@
+<md-dialog style="width : 100%; border : 2px solid white" ng-cloak>
+   <form>
+        <md-toolbar style="background-color: rgb(16, 32, 63)">
+          <div class="md-toolbar-tools">
+            <h2>All available flights</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+              <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+            
+    <md-dialog-content>
+          <div class="md-dialog-content">
+                <fieldset class="standard" style="text-transform : initial">
+                 <legend>Filters</legend>
+                 <div layout="column" layout-wrap layout-gt-sm="row" >
+                      <md-checkbox ng-model="filter.noStops" aria-label="Checkbox 1" ng-click="directFlightsOnly()">
+                        Direct flights only
+                      </md-checkbox>
+                      <md-checkbox aria-label="Checkbox 2" ng-model="filter.class">
+                        Economy class
+                      </md-checkbox>
+                 </div>
+                </fieldset>
+                <md-list >
+                <md-list-item ng-click="doPrimaryAction($event)" class="flight-listItem" ng-repeat="flight in filteredFlightsList" 
+                          ng-include="hasHops(flight.Sector) ? 'templates/templateA.html' : 'templates/templateB.html'">
+                </md-list-item>
+                </md-list>    
+            </div>
+        </md-dialog-content>
+    </form>
+     <md-dialog-actions layout="row">
+      <md-button md-raised md-autofocus style="text-transform : initial; float:left; margin-left:20px" >
+            New search
+      </md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,51 @@
+<div class="mdl-grid" ng-controller="CalanderController">
+	 <div class="mdl-cell md-cell--12-col mdl-cell--12-col-desktop">
+		<div id="calHolder">
+			<calendar-md id="calendar-demo"
+					flex layout layout-fill
+					calendar-direction="direction"
+					on-prev-month="prevMonth"
+					on-next-month="nextMonth"
+					on-day-click="dayClick"
+					title-format="'MMMM y'"
+					ng-model='selectedDate'
+					day-format="dayFormat"
+					day-label-format="'EEE'"
+					day-label-tooltip-format="'EEEE'"
+					day-tooltip-format="'fullDate'"
+					week-starts-on="weekStartsOn"
+					tooltips="true"
+					day-content="setDayContent"
+					disable-future-selection="disableFutureDates">
+			</calendar-md>
+		</div>
+	</div>
+</div>
+
+<style>
+	
+	#calHolder {
+		min-height: 480px;
+		height: 600px;
+	}
+	
+	md-toolbar {
+		min-height: 40px;
+	}
+	
+	.md-toolbar-tools {
+		height: 40px;
+	}
+	
+	.md-toolbar-tools>.md-button:last-child, .md-toolbar-tools>md-menu:last-child {
+     	margin-right: 0px;
+	}
+	
+	.md-button.md-icon-button {
+		margin-top: 0; 
+		line-height: 20px;
+		padding: 0px;
+		font-size: -webkit-xxx-large;
+	}
+	
+</style>

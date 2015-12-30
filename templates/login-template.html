@@ -1,0 +1,50 @@
+<md-dialog ng-cloak>
+    <form class="form-login" method="post" action="#">
+        <md-toolbar style="background-color: rgb(16, 32, 63)">
+          <div class="md-toolbar-tools">
+            <h2>Login / Signup</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+              <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+         <md-dialog-content>
+          <div class="md-dialog-content">
+            <div class="form-log-in-with-email">
+                <div class="form-white-background">
+                    <div class="form-row">
+                        <label>
+                            <span>Email</span>
+                            <input type="email" name="email">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>
+                            <span>Password</span>
+                            <input type="password" name="password">
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit">Log in</button>
+                    </div>
+                </div>
+                <a href="#" class="form-forgotten-password">Forgotten password</a>
+                <a href="#" class="form-create-an-account">Create an account</a>
+            </div>
+        </div>
+        </md-dialog-content>
+    </form>
+    <md-dialog-actions style="text-transform : initial" layout="row">
+      Login using: 
+      <md-button md-raised class="form-google-button" md-autofocus>
+        Google
+      </md-button>
+      <md-button md-raised class="form-facebook-button">
+       Facebook
+      </md-button>
+      <md-button md-raised class="form-twitter-button">
+        Twitter
+      </md-button>
+    </md-dialog-actions>
+</md-dialog>

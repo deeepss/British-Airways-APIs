@@ -1,0 +1,13 @@
+<div layout="column" class="verticalDivider">
+    <p>Connecting Flight</p>
+    <p>{{filteredFlightsList[$index].FlightNumber}}</p>
+</div>
+<md-list class="verticalDivider">
+    <md-list-item ng-repeat="sector in filteredFlightsList[$index].Sector">
+        <md-button class="md-raised sector-listItem" >
+            {{sector.DepartureAirport}} to {{sector.ArrivalAirport}}
+        </md-button>
+    </md-list-item>
+    <md-divider ></md-divider>
+</md-list>
+<md-button class="md-secondary" ng-click="doSecondaryAction($event)">More info</md-button>

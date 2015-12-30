@@ -1,0 +1,90 @@
+{
+    "OTA_AirLowFareSearchRS": {
+        "Success": "",
+        "PricedItineraries": {
+            "PricedItinerary": {
+                "@SequenceNumber": "1",
+                "AirItinerary": {
+                    "OriginDestinationOptions": {
+                        "OriginDestinationOption": {
+                            "FlightSegment": {
+                                "@ArrivalDateTime": "2015-12-17T05:00:00",
+                                "@DepartureDateTime": "2015-12-16T14:00:00",
+                                "@FlightNumber": "119",
+                                "@ResBookDesigCode": "J",
+                                "DepartureAirport": {
+                                    "@LocationCode": "LHR",
+                                    "@Terminal": "5"
+                                },
+                                "ArrivalAirport": {
+                                    "@LocationCode": "BLR"
+                                },
+                                "OperatingAirline": {
+                                    "@CompanyShortName": "British Airways"
+                                },
+                                "Equipment": {
+                                    "@AirEquipType": "77W"
+                                },
+                                "MarketingAirline": {
+                                    "@Code": "BA"
+                                },
+                                "TPA_Extensions": {
+                                    "CabinInfo": {
+                                        "@CabinCode": "C",
+                                        "@CabinName": "Club World"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "AirItineraryPricingInfo": {
+                    "ItinTotalFare": {
+                        "BaseFare": {
+                            "@Amount": "4141",
+                            "@CurrencyCode": "GBP"
+                        },
+                        "Taxes": {
+                            "Tax": {
+                                "@Amount": "338.56",
+                                "@CurrencyCode": "GBP",
+                                "@TaxCode": "TOTALTAX"
+                            }
+                        },
+                        "TotalFare": {
+                            "@Amount": "4479.56",
+                            "@CurrencyCode": "GBP"
+                        }
+                    },
+                    "PTC_FareBreakdowns": {
+                        "PTC_FareBreakdown": {
+                            "PassengerTypeQuantity": {
+                                "@Code": "ADT",
+                                "@Quantity": "3"
+                            },
+                            "FareInfo": {
+                                "PassengerFare": {
+                                    "BaseFare": {
+                                        "@Amount": "4141",
+                                        "@CurrencyCode": "GBP"
+                                    },
+                                    "Taxes": {
+                                        "Tax": {
+                                            "@Amount": "338.56",
+                                            "@CurrencyCode": "GBP",
+                                            "@TaxCode": "TOTALTAX"
+                                        }
+                                    },
+                                    "TotalFare": {
+                                        "@Amount": "4479.56",
+                                        "@CurrencyCode": "GBP"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
