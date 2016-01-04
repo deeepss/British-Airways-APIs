@@ -1,7 +1,7 @@
 BaApp.factory('LocationServices', function($rootScope, $http) {
         
     var factory = {}; 
-    var clientKey = "<<API KEY>>";
+    var clientKey = LOCATION-KEY;
     var baseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
 	
 	// location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=YOUR_API_KEY

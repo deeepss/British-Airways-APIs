@@ -1,6 +1,6 @@
 BaApp.factory('WeatherServices', function($http) {
     var factory = {}; 
-    var weatherApiKey = "<<API KEY>>";
+    var weatherApiKey = WEATHER_KEY;
     var baseUrl = "http://api.openweathermap.org/data/2.5/weather?";
     
     factory.getWeatherCondition =  function(latitude, longitude, airportName, callback) {

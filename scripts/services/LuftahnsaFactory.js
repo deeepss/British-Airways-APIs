@@ -9,9 +9,9 @@ BaApp.factory('LuftahnsaFactory', function($rootScope, $http, $filter) {
 	};
 	
 	var oAuthRequestParams = {
-		client_id : "<<YOUR CLIENT ID>>", 
-		client_secret: "<<CLIENT SECTRET>>",
-		grant_type : "<<client_credentials>>"
+		client_id :  LUF_CLIENT_ID  , 
+		client_secret: LUF_CLIENT_SECRET,
+		grant_type : LUF_CLIENT_CREDENTIALS
 	}
 	
     var baseUrl = "https://api.lufthansa.com/v1/";
@@ -37,8 +37,6 @@ BaApp.factory('LuftahnsaFactory', function($rootScope, $http, $filter) {
 			accessToken.token = response.access_token;
 			accessToken.expiry = response.expires_in;
 			accessToken.tokenType = response.token_type;
-			console.log(response);
-			
 			callBack();
 			//factory.getNearestAirports(1,1);
 			

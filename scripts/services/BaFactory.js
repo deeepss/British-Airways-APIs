@@ -1,7 +1,7 @@
 BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
         
     var factory = {}; 
-    var clientKey = "<<CLIENT KEY>>";
+    var clientKey =  BA_API_KEY;
     var baseUrl = "https://api.ba.com/rest-v1/v1/";
 	var cabinTypes = ['economy', 'premiumEconomy', 'business','first'];
 	var journeyType = ['oneWay', 'roundTrip'];
@@ -22,7 +22,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
         var remoteUrl = baseUrl + "flights;departureLocation="+  requestInfo.from 
                                 + ";arrivalLocation="+ requestInfo.to 
                                 + ";"+ modeOfFlight +"=" + requestInfo.date +".json";
-        console.log(remoteUrl);
         $http({
                     method: "get",
                     url: remoteUrl,
@@ -33,7 +32,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
     factory.searchFlightsByNumber = function(requestInfo) {
         var modeOfFlight = (requestInfo.mode == 'D') ? "scheduledDepartureDate" : "scheduledArrivalDate";
         var remoteUrl = baseUrl + "flights;flightNumber=" + requestInfo.flightNumber + ";" + modeOfFlight + '=' + requestInfo.time + ".json";
-        console.log(remoteUrl);
         $http({
                     method: "get",
                     url: remoteUrl,
@@ -50,7 +48,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
      factory.searchFlightsByTime = function(requestInfo, sucessCallback, failedCallback) {
         var modeOfFlight = (requestInfo.mode == 'D') ? "departureLocation" : "arrivalLocation";
         var remoteUrl = baseUrl + "flights;" + modeOfFlight +"="+  requestInfo.locationCode + ";startTime=" + requestInfo.startTime + ";endTime=" + requestInfo.endTime +".json";
-        console.log(remoteUrl);
         $http({
                     method: "get",
                     url: remoteUrl,
@@ -60,7 +57,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
      
     factory.searchFlightsByPrice = function(requestInfo, sucess, failed) {
 		var remoteUrl = baseUrl + "flightOfferBasic;departureCity=" + requestInfo.from + ";arrivalCity="+  requestInfo.to + ";cabin=" + cabinTypes[requestInfo.moreOptions.cabinType] + ";journeyType=" + journeyType[requestInfo.moreOptions.journeyType] + ";range=" + range[requestInfo.moreOptions.range] + ".json";
-        console.log(remoteUrl);
         $http({
                     method: "get",
                     url: remoteUrl,
@@ -94,7 +90,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
 		
 		var remoteUrl = baseUrl + "flightOfferMktAffiliates;" +  departureDateTimeOutbound + ";" + locationCodeOriginOutbound + ";" + locationCodeDestinationOutbound + ';'+ cabinInfo + ";"+ adults + ";" + child + ';' + infants + '.' + format;
 			
-        console.log(remoteUrl);
 		var localUrl = "json/priced-itenary.json";
         // var localUrl = "json/default-search.json";
         $http({

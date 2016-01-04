@@ -204,7 +204,7 @@ BaApp.controller('HomeController', function($scope, $rootScope, $mdDialog, $mdMe
           }
         };
 
-        var pusher = new Pusher('<<Pudher ID>>', {
+        var pusher = new Pusher(PUSHER_KEY, {
           encrypted: true
         });
 
