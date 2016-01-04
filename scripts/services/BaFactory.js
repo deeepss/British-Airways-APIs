@@ -1,7 +1,7 @@
 BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
         
     var factory = {}; 
-    var clientKey = "<<YOUR API KEY>>";
+    var clientKey = "<<CLIENT KEY>>";
     var baseUrl = "https://api.ba.com/rest-v1/v1/";
 	var cabinTypes = ['economy', 'premiumEconomy', 'business','first'];
 	var journeyType = ['oneWay', 'roundTrip'];
@@ -18,7 +18,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
     }
 
     factory.searchFlightsByRoute = function(requestInfo, sucess, failure) {
-        var localUrl = "json/lonToBlr.json";
         var modeOfFlight = (requestInfo.mode == 'D') ? "scheduledDepartureDate" : "scheduledArrivalDate";
         var remoteUrl = baseUrl + "flights;departureLocation="+  requestInfo.from 
                                 + ";arrivalLocation="+ requestInfo.to 
@@ -32,7 +31,6 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
     }
     
     factory.searchFlightsByNumber = function(requestInfo) {
-        var localUrl = "json/lonToBlr.json";
         var modeOfFlight = (requestInfo.mode == 'D') ? "scheduledDepartureDate" : "scheduledArrivalDate";
         var remoteUrl = baseUrl + "flights;flightNumber=" + requestInfo.flightNumber + ";" + modeOfFlight + '=' + requestInfo.time + ".json";
         console.log(remoteUrl);
@@ -94,14 +92,14 @@ BaApp.factory('BritishAirways', function($rootScope, $http,$filter) {
 		
 		var format  = 'json';
 		
-		var remoteUrl = baseUrl + "flightOfferMktAffiliates;" +  departureDateTimeOutbound + ";" + locationCodeOriginOutbound + ";" + locationCodeDestinationOutbound + ';'+ cabinInfo + ";"+ adults + ";" + child + ';' + infants + ';' + format;
+		var remoteUrl = baseUrl + "flightOfferMktAffiliates;" +  departureDateTimeOutbound + ";" + locationCodeOriginOutbound + ";" + locationCodeDestinationOutbound + ';'+ cabinInfo + ";"+ adults + ";" + child + ';' + infants + '.' + format;
 			
         console.log(remoteUrl);
 		var localUrl = "json/priced-itenary.json";
         // var localUrl = "json/default-search.json";
         $http({
                     method: "get",
-                    url: localUrl,
+                    url: remoteUrl,
                     headers: {'Client-Key': clientKey}
                 }).then(sucess, failed);
     }

@@ -31,15 +31,18 @@
 <!--        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport" 
+			  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link type="text/css" rel="stylesheet" href="css/styles.css" />
+        <link type="text/css" rel="stylesheet" href="css/styles.css"/>
 		<link type="text/css" rel="stylesheet" href="css/form-css.css" />
 		<link type="text/css" rel="stylesheet" href="css/search-flight.css" />
 		<link type="text/css" rel="stylesheet" href="css/responsive-theme.css" />
 		<link type="text/css" rel="stylesheet" href="css/flightlists.css" />
 
-    	<script src="https://maps.googleapis.com/maps/api/js?key=<<YOUR API KEY>>"></script>
+    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3XLwoR5NiE2zRMTQ_zOgHbYIvJWYVGIM"></script>
+		<!--Mine
+    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3XLwoR5NiE2zRMTQ_zOgHbYIvJWYVGIM"></script>-->
 		
 		<link href="https://fonts.googleapis.com/css?family=Roboto:light&lang=en" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -73,7 +76,11 @@
               <md-tab label="Compare"  >
                 <md-content class="md-padding"
 							ng-include = "'templates/compare.html'">
-					
+                </md-content>
+              </md-tab>
+                 <md-tab label="Plan a holiday"  >
+                <md-content class="md-padding"
+							ng-include = "'templates/holiday.html'">
                 </md-content>
               </md-tab>
               </md-tabs>
@@ -95,13 +102,14 @@
 	
 	<script src="libs/bootstrap/pusher.min.js"></script>
     
-    <script src="scripts/ba-app.js"></script> 
+    <script src="scripts/ba-app.js"></script>  
     
     <!-- Angular Services Library -->
     <script src="scripts/services/BaFactory.js"></script> 
     <script src="scripts/services/LuftahnsaFactory.js"></script> 
     <script src="scripts/services/LocationServices.js"></script> 
     <script src="scripts/services/Pusher-services.js"></script> 
+    <script src="scripts/services/WeatherFactory.js"></script> 
     
     <!-- Angular Controller Library -->
     

@@ -1,28 +1,17 @@
-BaApp.controller('QuickbookController', function($scope, $filter, $rootScope, BritishAirways, LuftahnsaFactory, LocationServices, NgMap){
-    $scope.departure = '';
-	$scope.arrival = '';
+BaApp.controller('QuickbookController', function($scope, $filter, $rootScope, BritishAirways, LuftahnsaFactory, WeatherServices, NgMap) {
     
+	$scope.mapHolder = 0;
+	
 	$scope.airportsArray = [];
 	$scope.$watchCollection('airportsList', function(current, old) {
        $scope.airportsArray = loadAll();
     });
 	
-    $scope.filteredAirportList = [];
-    
-    $scope.flightList = [];
-    
-    $scope.simulateQuery = false;
-    
-    $scope.mode = 'D';
-    $scope.querySearch   = querySearch;
-    $scope.dSelectedItemChange = dSelectedItemChange;
-    $scope.dSearchTextChange   = dSearchTextChange;
-	
+    $scope.allDestinationFlights = [];
+  
 	$scope.selectedAirport = {};
 	
-	$scope.defaultRadius = 35000;
-	
-	$scope.mapHolder = 0;
+	$scope.allDestinations = [];
 	
 	$scope.myLocationInfo = {
 		pos : [51.47, 0.46], // LHR - Airport
@@ -31,145 +20,202 @@ BaApp.controller('QuickbookController', function($scope, $filter, $rootScope, Br
 		destinations : []
 	}
 	
-	$scope.allLocations = [];
-	
 	NgMap.getMap().then(function(map) {
 		$scope.mapHolder = map;
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition($scope.showMyLocation, $scope.showError);
+			navigator.geolocation.getCurrentPosition($scope.showHomeInMap, $scope.showError);
 		} else {
 			console.log("Geolocation is not supported by this browser.");
 		}
 	});
 	
-	$scope.showMyLocation = function (position) {
+	$scope.showHomeInMap = function(position) {
 		$scope.myLocationInfo.pos[0] = position.coords.latitude;
 		$scope.myLocationInfo.pos[1] = position.coords.longitude;
-		showInMap($scope.myLocationInfo.pos, "home");
 		
-		// getNearestAirport();
-		
-		// getNearestAirportUsingLufthansa();
-		
-		
-		function getNearestAirportUsingLufthansa() {
-			var locationInfo =  position.coords.latitude +','+ position.coords.longitude;
-			LuftahnsaFactory.getNearestAirports(locationInfo, function sucess(response) {
-				$scope.myLocationInfo.airportsNearby = response.NearestAirportResource.Airports.Airport;
-				console.log($scope.myLocationInfo.airportsNearby);
-				
-				var temp = [];
-				angular.forEach($scope.myLocationInfo.airportsNearby, function(airport, key) {
-					console.log(airport);
-					var location = [airport.Position.Coordinate.Latitude, airport.Position.Coordinate.Longitude];
-					showInMap(location, "airport");   
-				},temp);
-			}, function error(err) {
-				console.log(err);
-			});
-		}
-		
-		function parseAirportInformation() {
-			
-		}
-		
-		function getNearestAirport() {
-			LocationServices.getNearestAirport($scope.myLocationInfo.pos, 
-											   $scope.defaultRadius, 
-											   function sucess(response) {
-				if(response.data.status == "OK")  {
-						$scope.myLocationInfo.nearestAirport[0] = response.data.results[0].geometry.location.lat;
-						$scope.myLocationInfo.nearestAirport[1] = response.data.results[0].geometry.location.lng;
-						showInMap($scope.myLocationInfo.nearestAirport, "airport");    
-				} else if(response.data.status == "ZERO_RESULTS") {
-					$scope.defaultRadius = $scope.defaultRadius * 2;
-					getNearestAirport();
-				} else {
-					console.log(response.data);
-				}
-			}, function error(err) {
-				console.log(err);
-			});
-		}
-	}
-	
-    function showInMap(location, mode) {
-		console.log("plotting " + location);
-		var gps = new google.maps.LatLng(location[0], location[1]);
-        var marker = new google.maps.Marker({ title: "Marker: "});
+		var gps = new google.maps.LatLng($scope.myLocationInfo.pos[0], $scope.myLocationInfo.pos[1]);
+		var marker = new google.maps.Marker({ title: "You are here"});
 		marker.setPosition(gps);
 		marker.setMap($scope.mapHolder);
-        if (mode == "sector")
-            marker.setIcon("images/flight-icons/airport-marker.png");
-		
+		marker.setIcon("img/icons/home-map-marker.png");
 		$scope.mapHolder.setCenter(gps);
-    }
-    
-	function addLocationTolist(lat, longt, mode) {
-		var element = {pos : []};
-		element.pos[0] = lat; 
-		element.pos[1] = longt; 
+        
+        
+        
+        clearAllFlightPath();
+        $scope.requestInfo = {
+                    locationCode: 'BLR',
+                    startTime: '00:00', 
+                    endTime : '23:59',
+                    mode : 'D'
+                }
+        BritishAirways.searchFlightsByTime($scope.requestInfo, function sucess(result) {
+            $scope.allDestinationFlights = [];
+            if (result.data.FlightsResponse.Flight instanceof Array)
+                $scope.allDestinationFlights = result.data.FlightsResponse.Flight;
+            else 
+                $scope.allDestinationFlights.push(result.data.FlightsResponse.Flight); 
+
+            parseFlightInformation();
+        }, function error(response) {
+            $scope.allDestinationFlights = [];
+            if (response.status == 404) {
+                console.log("Flights are not availble from this location.");
+            }
+        });
+	}
+
+	$scope.allDestinations = [];
+	$scope.addToDestination = function (destinationAirport, dflightInfo) {
+		var flightAdded = false;
+		for(var i = 0; i < $scope.allDestinations.length; i++) {
+			var keyDestination = $scope.allDestinations[i];
+			if(keyDestination.airport.display === destinationAirport.display) {
+				$scope.allDestinations[i].flights.push(dflightInfo);
+				flightAdded = true;
+				break;
+			}
+		}
 		
-		$scope.allLocations.push(element);	
-		showInMap(element.pos, mode);
+		if (!flightAdded) {
+			var destination = {
+				pos : [destinationAirport.id.Position.Latitude, destinationAirport.id.Position.Longitude],
+				airport : destinationAirport,
+				flights : []
+			};
+			
+			destination.flights.push(dflightInfo);
+			$scope.allDestinations.push(destination);	
+			
+			addNewPathToMap(destinationAirport);
+		}
 	}
 	
-    function querySearch (query) {
-      var results = query ?  $scope.airportsArray.filter( createFilterFor(query) ) :  $scope.airportsArray,
-          deferred;
-      if ($scope.simulateQuery) {
-        deferred = $q.defer();
-        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
-        return deferred.promise;
-      } else {
-        return results;
-      }
-    }
-    
-    function dSearchTextChange(text) {
-        $scope.departure = '';
-    }
+	function addNewPathToMap(destinationAirport) {
+		var to = [destinationAirport.id.Position.Latitude, destinationAirport.id.Position.Longitude];
+		var from = [$scope.selectedAirport.Position.Latitude, $scope.selectedAirport.Position.Longitude];
+		drawPath(from, to);
+	}
 	
-	function addToDestination(airport) {
-		var position = {};
-		position[0] = airport.Position.Latitude;
-		position[1] = airport.Position.Longitude;
+	$scope.markerInfo = {};
+	
+	$scope.showDetails = function(e, position) {
+	var destination = $scope.allDestinations[position];
+		$scope.markerInfo.title = destination.airport.display;
+		$scope.markerInfo.tag = position;
+		$scope.markerInfo.flights = parsedFlightInformation(destination.flights);
+		$scope.mapHolder.showInfoWindow('marker-info', this);
+	 };
+	
+	$scope.getFlightInfo = function(id) {
+		$scope.mapHolder.hideInfoWindow('marker-info');
 		
-		showInMap(position, 'airport');
-		
-		var sPos = [];
-		sPos[0] = $scope.selectedAirport.Position.Latitude;
-		sPos[1] = $scope.selectedAirport.Position.Longitude;
-		
-		drawPath(sPos, position);
+		console.log($scope.allDestinations[$scope.markerInfo.tag].flights[id]);
+	}
+	
+	function parsedFlightInformation(flights) {
+		var parsedFlights = [];
+		for(var i = 0; i < flights.length; i++) {
+			var flightInfomation = {};
+			flightInfomation.arrStatus = flights[i].ArrivalStatus;
+			flightInfomation.aTerminal = flights[i].ArrivalTerminal;
+			flightInfomation.arrDate = $filter('date')(flights[i].ReportedArrivalDateTime, "dd-MM-yyyy");
+			flightInfomation.arrTime = $filter('date')(flights[i].ReportedArrivalDateTime, "hh:mm 'hrs'");
+			parsedFlights.push(flightInfomation);
+		}
+		return parsedFlights;
+	}
+	
+	function getNearestAirportUsingLufthansa(position) {
+		var locationInfo =  position.coords.latitude +','+ position.coords.longitude;
+		LuftahnsaFactory.getNearestAirports(locationInfo, function sucess(response) {
+			$scope.myLocationInfo.airportsNearby = response.NearestAirportResource.Airports.Airport;
+			var temp = [];
+			angular.forEach($scope.myLocationInfo.airportsNearby, function(airport, key) {
+				var location = [airport.Position.Coordinate.Latitude, airport.Position.Coordinate.Longitude];
+				addMarkerInMap(location, "airport");   
+			},temp);
+		}, function error(err) {
+			console.log(err);
+		});
 	}
 	
 	
-    function dSelectedItemChange(item) {
+	
+    function addMarkerInMap(location, mode) {
+		/*WeatherServices.getWeatherCondition(location[0], location[1], "LHR" ,function sucess(weatherInfo) {
+			var gps = new google.maps.LatLng(weatherInfo.coords[0], weatherInfo.coords[1]);
+			var marker = new google.maps.Marker({ title: weatherInfo.weather});
+			marker.setPosition(gps);
+			marker.setMap($scope.mapHolder);
+			var iconUrl = "img/weather/" + weatherInfo.icon  + ".png";
+			console.log(iconUrl);
+			
+			marker.setIcon(iconUrl);
+			$scope.mapHolder.setCenter(gps);
+		});*/
+    }
+
+	$scope.flightPaths = [];
+	
+	function drawPath(from, to) {
+		  var flightPlanCoordinates = [{
+			  lat: from[0], lng: from[1]
+		  }, {
+			  lat: to[0], lng: to[1]
+		  }];
+		
+		  var flightPath = new google.maps.Polyline({
+			path: flightPlanCoordinates,
+			geodesic: true,
+			strokeColor: getRandomColor(),
+			strokeOpacity: 1.0,
+			strokeWeight: 2
+		  });
+		
+		$scope.flightPaths.push(flightPath);
+		
+		$scope.flightPaths[$scope.flightPaths.length-1].setMap($scope.mapHolder);
+	}
+	
+	function clearAllFlightPath() {
+		for (i = 0 ; i < $scope.flightPaths.length; i++) {
+			$scope.flightPaths[i].setMap(null);
+		}
+	}
+	
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF'.split('');
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+	
+    $scope.dSelectedItemChange = function(item) {
 			if (item === undefined) {
 				return;
 			} else {
 				$scope.selectedAirport = item.id;
-				showInMap([$scope.selectedAirport.Position.Latitude, $scope.selectedAirport.Position.Longitude]);
-				
-				$scope.departure =  item.id.AirportCode;
+				$scope.allDestinations = [];
+				clearAllFlightPath();
 				$scope.requestInfo = {
-							locationCode: $scope.departure,
+							locationCode: item.id.AirportCode,
 							startTime: '00:00', 
 							endTime : '23:59',
-							mode : $scope.mode
+							mode : 'D'
 						}
 				BritishAirways.searchFlightsByTime($scope.requestInfo, function sucess(result) {
-					$scope.flightList = [];
+					$scope.allDestinationFlights = [];
 					if (result.data.FlightsResponse.Flight instanceof Array)
-						$scope.flightList = result.data.FlightsResponse.Flight;
+						$scope.allDestinationFlights = result.data.FlightsResponse.Flight;
 					else 
-						$scope.flightList.push(result.data.FlightsResponse.Flight); 
+						$scope.allDestinationFlights.push(result.data.FlightsResponse.Flight); 
 					
 					parseFlightInformation();
-					
-					showAllRoutesInMap();
 				}, function error(response) {
+					$scope.allDestinationFlights = [];
 					if (response.status == 404) {
 						console.log("Flights are not availble for the requested route.");
 					}
@@ -178,14 +224,14 @@ BaApp.controller('QuickbookController', function($scope, $filter, $rootScope, Br
     }
 	
 	$scope.parsedFlightList = [];
-	 
 	function parseFlightInformation() {
 		$scope.parsedFlightList = [];
-		angular.forEach($scope.flightList, function(flight, key) {
+		angular.forEach($scope.allDestinationFlights, function(flight, key) {
 			var parsedFlight = {
 				sectors : []
 			};
 			parsedFlight.flightNumber = flight.FlightNumber; 
+			
 			if (flight.Sector instanceof Array) {
 				for(var i = 0; i < flight.Sector.length; i++) {
 					parsedFlight.sectors[i] = getFlightInformation(flight.Sector[i]);
@@ -210,95 +256,28 @@ BaApp.controller('QuickbookController', function($scope, $filter, $rootScope, Br
 		
 		parsedSector.depDate = $filter('date')(sector.ScheduledDepartureDateTime, "dd MMM yyyy");
 		parsedSector.depTime = $filter('date')(sector.ScheduledDepartureDateTime, "hh:mm 'hrs'");
+		
+		if (sector.DepartureAirport == $scope.selectedAirport.AirportCode) {
+			$scope.addToDestination(querySearch(sector.ArrivalAirport)[0], sector);
+		}
 		return parsedSector;
 	}
 	
-	function showAllRoutesInMap() {
-        var coords = [];
-        angular.forEach($scope.flightList, function(flight, key) {
-			if (flight.Sector instanceof Array) {
-                for(var i = 0; i<flight.Sector.length; i++) 
-                    getCoordsOfAirport(flight.Sector[i].ArrivalAirport, "sector");
-            } else {
-			 getCoordsOfAirport(flight.Sector.ArrivalAirport, "airport");
-            }
-        }, coords);
-	}
+	$scope.simulateQuery = false;
+	$scope.querySearch   = querySearch;
 	
-	function drawPath(from, to) {
-		  var flightPlanCoordinates = [{
-			  lat: from[0], lng: from[1]
-		  }, {
-			  lat: to[0], lng: to[1]
-		  }];
-		
-		  var flightPath = new google.maps.Polyline({
-			path: flightPlanCoordinates,
-			geodesic: true,
-			strokeColor: '#FF0000',
-			strokeOpacity: 1.0,
-			strokeWeight: 1
-		  });
-
-		  flightPath.setMap($scope.mapHolder);
-	}
+    function querySearch (query) {
+      var results = query ?  $scope.airportsArray.filter( createFilterFor(query) ) :  $scope.airportsArray,
+          deferred;
+      if ($scope.simulateQuery) {
+        deferred = $q.defer();
+        $timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+        return deferred.promise;
+      } else {
+        return results;
+      }
+    }
 	
-	
-	function getCoordsOfAirport (airportCode, mode){
-		var airports = [];
-        angular.forEach($rootScope.airportsList, function(airport, key) {
-			if (airport.AirportCode == airportCode) {
-				addToDestination(airport);
-			}
-        }, airports);
-	}
-    
-    function getAllDestinations(allFlights) {
-		   $scope.filteredAirportList = [];
-           if (allFlights instanceof Array) {
-                var flights = [];
-                angular.forEach(allFlights, function(flight, key) {
-                         var flightInfo = {
-                               airportCode : flight.ArrivalAirport
-                           };
-                        this.push(flightInfo);
-                     }, flights);
-                $scope.filteredAirportList = allFlights;
-           } else {
-			   var flightInfo = {
-                   airportCode : allFlights.FlightNumber
-               };
-               $scope.filteredAirportList.push(flightInfo);
-           }
-    }
-    
-    function getUltimateDestination(sector) {
-        if (sector instanceof Array) {
-            
-        } else {
-            return sector;
-        }
-    }
-    
-    function listAllDestinations() {
-         return Object.keys($rootScope.airportsList).map( function (state) {
-              var searchVal = '';
-              var displayVal = '';
-                  if ($rootScope.airportsList[state].City != undefined) {
-                     searchVal = $rootScope.airportsList[state].City.toLowerCase()+$rootScope.airportsList[state].AirportName.toLowerCase()+ $rootScope.airportsList[state].AirportCode.toLowerCase();
-                     displayVal = $rootScope.airportsList[state].City+', '+ $rootScope.airportsList[state].AirportName + ' ('+ $rootScope.airportsList[state].AirportCode + ")";
-                  } else {
-                    searchVal = $rootScope.airportsList[state].AirportName.toLowerCase()+ $rootScope.airportsList[state].AirportCode.toLowerCase();
-                    displayVal = $rootScope.airportsList[state].AirportName + ' ('+ $rootScope.airportsList[state].AirportCode + ")";
-                  }
-                return {
-                  value: searchVal,
-                  display: displayVal,
-                  id :  $rootScope.airportsList[state]
-                };
-      });
-    }
-    
     function loadAll() {
       return Object.keys($rootScope.airportsList).map( function (state) {
       var searchVal = '';
@@ -329,8 +308,6 @@ BaApp.controller('QuickbookController', function($scope, $filter, $rootScope, Br
       };
     }
 	
-
-
 		$scope.showError = function (error) {
 		switch (error.code) {
 			case error.PERMISSION_DENIED:

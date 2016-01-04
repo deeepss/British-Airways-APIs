@@ -1,6 +1,7 @@
 BaApp.factory('GoogleServices', function($http) {
     var factory = {}; 
-    var googleApiKey = "<<YOUR API KEY>>";
+    // AIzaSyD3XLwoR5NiE2zRMTQ_zOgHbYIvJWYVGIM
+    var googleApiKey = "<<API KEY>>";
     var baseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
     
     

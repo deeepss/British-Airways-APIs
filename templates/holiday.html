@@ -1,0 +1,38 @@
+<div ng-controller="StatisticsController">   
+    <fieldset class="standard" style="text-transform : initial">
+        <legend>Trip criteria</legend>
+        <div layout="column" layout-wrap layout-gt-sm="row" >
+            <div flex-xs flex="50">
+                <fieldset>
+                        <legend>From</legend>
+                        <md-input-container>
+                            <label>Departure</label>
+                            <md-select ng-model="dAirport" placeholder="Choose departure">
+                                <md-option ng-repeat="airport in airportsArray | orderBy : 'AirportCode'" 
+                                           ng-value="airport">
+                                    {{ airport.AirportCode }} ({{airport.AirportName}})
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                </fieldset>
+            </div>
+            <div flex-xs flex="50">
+                 <fieldset class="standard" style="text-transform : initial">
+                 <legend>Filters</legend>
+                 <div layout="column" layout-wrap layout-gt-sm="row" >
+                      <md-checkbox ng-model="filter.noStops" aria-label="Checkbox 1" ng-click="directFlightsOnly()">
+                        Direct flights only
+                      </md-checkbox>
+                      <md-checkbox aria-label="Checkbox 2" ng-model="filter.class">
+                        VISA on arrival
+                      </md-checkbox>
+                 </div>
+                </fieldset>
+            </div>
+        </div>
+        <md-button style="float : right" ng-show="(dAirport.AirportCode.length > 0)"
+                   ng-click="searchFlights()" class="md-raised">Go</md-button>
+    </fieldset>
+</div>
+	
+	

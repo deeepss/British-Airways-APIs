@@ -10,8 +10,8 @@ BaApp.factory('LuftahnsaFactory', function($rootScope, $http, $filter) {
 	
 	var oAuthRequestParams = {
 		client_id : "<<YOUR CLIENT ID>>", 
-		client_secret: "<<YOUR SECRET CODE>>",
-		grant_type : "client_credentials"
+		client_secret: "<<CLIENT SECTRET>>",
+		grant_type : "<<client_credentials>>"
 	}
 	
     var baseUrl = "https://api.lufthansa.com/v1/";
@@ -60,20 +60,23 @@ BaApp.factory('LuftahnsaFactory', function($rootScope, $http, $filter) {
 		});
     }
 
-    factory.searchFlightsByRoute = function(requestInfo, sucess, failure) {
-        var localUrl = "json/lonToBlr.json";
-        var modeOfFlight = (requestInfo.mode == 'D') ? "scheduledDepartureDate" : "scheduledArrivalDate";
-        var remoteUrl = baseUrl + "flights;departureLocation="+  requestInfo.from 
-                                + ";arrivalLocation="+ requestInfo.to 
-                                + ";"+ modeOfFlight +"=" + requestInfo.date +".json";
-        console.log(remoteUrl);
-        $http({
-                    method: "get",
+	factory.searchFlightsByRoute = function(requestInfo, sucess, failure) {
+        var remoteUrl = baseUrl + "operations/flightstatus/route/" +  
+			requestInfo.from +'/' + requestInfo.to + '/' + requestInfo.date;
+		$http({
+                    method: 'GET',
                     url: remoteUrl,
-                    headers: {'Client-Key': clientKey}
-                }).then(sucess, failure);
+                    headers: {'Authorization': "Bearer " +accessToken.token }
+                }).success(function (response) {
+					sucess(response);
+		}).error(function (error) {
+			failure(error);
+		});
     }
     
+	
+	
+	//
     factory.searchFlightsByNumber = function(requestInfo) {
         var localUrl = "json/lonToBlr.json";
         var modeOfFlight = (requestInfo.mode == 'D') ? "scheduledDepartureDate" : "scheduledArrivalDate";
@@ -113,7 +116,7 @@ BaApp.factory('LuftahnsaFactory', function($rootScope, $http, $filter) {
                 }).then(sucess, failed);
     }
 	
-	factory.defaultFlightSearch = function(requestInfo, sucess, failed) {
+	factory.searchFlightsTemp = function(requestInfo, sucess, failed) {
 		var cabinTypes = ['Economy', 'Business','First'];
 
 		var timeStamp = $filter('date')( requestInfo.startDate, "yyyy-MM-dd'T'hh:mm:ss");
@@ -138,10 +141,6 @@ BaApp.factory('LuftahnsaFactory', function($rootScope, $http, $filter) {
 		var format  = 'json';
 		
 		var remoteUrl = baseUrl + "flightOfferMktAffiliates;" +  departureDateTimeOutbound + ";" + locationCodeOriginOutbound + ";" + locationCodeDestinationOutbound + ';'+ cabinInfo + ";"+ adults + ";" + child + ';' + infants + ';' + format;
-			
-        console.log(remoteUrl);
-		var localUrl = "json/priced-itenary.json";
-        // var localUrl = "json/default-search.json";
         $http({
                     method: "get",
                     url: localUrl,

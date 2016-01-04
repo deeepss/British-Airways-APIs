@@ -1,7 +1,4 @@
 <div ng-controller="SearchController">   
-	<md-content class="md-padding" ng-include="'templates/priced-itenerary.html'">
-	</md-content>
-	
 <fieldset class="standard" style="text-transform : initial">
     <legend>Deafult search</legend>
     <div layout="column" layout-wrap layout-gt-sm="row" >
@@ -37,7 +34,7 @@
           <md-input-container style="margin-right: 10px;">
             <label>Country</label>
             <md-select ng-model="aCountry" ng-change="populateACities()">
-              <md-option ng-repeat="country in countriesList" ng-value="{{country}}">{{country.CountryName}}</md-option>
+              <md-option ng-repeat="country in countriesList | orderBy: 'CountryName'" ng-value="{{country}}">{{country.CountryName}}</md-option>
             </md-select>
           </md-input-container>
           <md-input-container ng-show="aCountry.City.length > 1">
@@ -61,47 +58,69 @@
 <fieldset class="standard" style="text-transform : initial">
     <legend>More options</legend>
      <div layout="column" layout-wrap layout-gt-sm="row" >
-        <div flex-xs flex="70">
+        <div flex-xs flex="40">
            <fieldset class="standard" style="text-transform : initial">
             <legend>Journey type</legend>
             <md-radio-group ng-change="onJnyTypChanged()" layout="row" ng-model="moreOptions.journeyType">
                 <md-radio-button value="0" class="md-primary">One way</md-radio-button>
                 <md-radio-button value="1">Two way</md-radio-button>
             </md-radio-group>
+			<div layout="row" style="margin-top:10px">
+			 <form name="onewayForm">
+				 <fieldset layout="column">
+					  <legend>Start date</legend>
+					  <md-datepicker name="dateField" ng-model="startDate" md-placeholder="Enter date"
+						  required md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+					  <div class="validation-messages" ng-messages="onewayForm.dateField.$error">
+						<div ng-message="valid">The entered value is not a date!</div>
+						<div ng-message="required">This date is required!</div>
+						<div ng-message="maxdate">Date should not exceed 14 days from today!</div>
+						<div ng-message="mindate">Date cannot be less than today!</div>
+					  </div>
+				 </fieldset>
+			</form>
+			 <form name="twowayForm" layout="column">
+				 <fieldset layout="column" ng-disabled="moreOptions.journeyType == 0" >
+					  <legend>Return date</legend>
+					  <md-datepicker name="dateField" ng-model="endDate" md-placeholder="Enter date"
+						  required md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
+					  <div class="validation-messages" ng-messages="twowayForm.dateField.$error">
+						<div ng-message="valid">The entered value is not a date!</div>
+						<div ng-message="required">This date is required!</div>
+						<div ng-message="maxdate">Date should not exceed 14 days from today!</div>
+						<div ng-message="mindate">Date cannot be less than today!</div>
+					  </div>
+				  </fieldset>
+			</form>
+		   </div>
           </fieldset>
-          <fieldset class="standard" style="text-transform : initial">
-            <legend>Journey date</legend>
-               <div layout="row">
-                 <form name="onewayForm">
-                     <fieldset layout="column">
-                          <legend>Start date</legend>
-                          <md-datepicker name="dateField" ng-model="startDate" md-placeholder="Enter date"
-                              required md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-                          <div class="validation-messages" ng-messages="onewayForm.dateField.$error">
-                            <div ng-message="valid">The entered value is not a date!</div>
-                            <div ng-message="required">This date is required!</div>
-                            <div ng-message="maxdate">Date should not exceed 14 days from today!</div>
-                            <div ng-message="mindate">Date cannot be less than today!</div>
-                          </div>
-                     </fieldset>
-                </form>
-                 <form name="twowayForm" layout="column">
-                     <fieldset layout="column" ng-disabled="moreOptions.journeyType == 0" >
-                          <legend>Return date</legend>
-                          <md-datepicker name="dateField" ng-model="endDate" md-placeholder="Enter date"
-                              required md-min-date="minDate" md-max-date="maxDate"></md-datepicker>
-                          <div class="validation-messages" ng-messages="twowayForm.dateField.$error">
-                            <div ng-message="valid">The entered value is not a date!</div>
-                            <div ng-message="required">This date is required!</div>
-                            <div ng-message="maxdate">Date should not exceed 14 days from today!</div>
-                            <div ng-message="mindate">Date cannot be less than today!</div>
-                          </div>
-                      </fieldset>
-                </form>
-               </div>
-            </fieldset>
         </div>
-        <div flex-xs flex="30">
+		<div flex-xs flex="25">
+        <fieldset class="standard" style="text-transform : initial">
+            <legend>Passengers</legend>
+             <div layout="row">
+			  <md-input-container >
+				<label>Adults</label>
+				<md-select ng-model="moreOptions.passengers[0]">
+				  <md-option ng-repeat="i in passengerCountArray" ng-value="{{i}}">{{i}}</md-option>
+				</md-select>
+			  </md-input-container>
+			   <md-input-container >
+				<label>Children</label>
+				<md-select ng-model="moreOptions.passengers[1]">
+				  <md-option ng-repeat="i in passengerCountArray" ng-value="{{i}}">{{i}}</md-option>
+				</md-select>
+			  </md-input-container>
+			    <md-input-container>
+				<label>Infants</label>
+				<md-select ng-model="moreOptions.passengers[2]">
+				  <md-option ng-repeat="i in passengerCountArray" ng-value="{{i}}">{{i}}</md-option>
+				</md-select>
+			  </md-input-container>
+			</div>
+        </fieldset>
+        </div>
+        <div flex-xs flex="25">
         <fieldset class="standard" style="text-transform : initial">
             <legend>Cabin type</legend>
             <md-radio-group layout="column" layout-sm="row" ng-model="moreOptions.cabinType">
@@ -118,5 +137,5 @@
                     && (twowayForm.$valid || (moreOptions.journeyType == 0))" 
                ng-click="searchFlights()" class="md-raised">Go</md-button>
 	
-	
+<md-content class="md-padding" ng-include="'templates/priced-itenerary.html'"></md-content>	
 </div>

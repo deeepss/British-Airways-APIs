@@ -1,6 +1,6 @@
 BaApp.controller('SearchController', function($scope,$filter, $mdDialog,$timeout, $q, $log, $rootScope, BritishAirways){
-	$scope.departure = 'a';
-	$scope.arrival = 'd';
+	$scope.departure = '';
+	$scope.arrival = '';
 	
     $scope.showResults = false;
     $scope.flightList = [];
@@ -26,6 +26,9 @@ BaApp.controller('SearchController', function($scope,$filter, $mdDialog,$timeout
 	$scope.aCountry = {};
 	$scope.aCity = {};
     $scope.aAirport = {};
+	
+	
+	$scope.passengerCountArray = [0, 1, 2, 3, 4, , 6, 7, 8, 9];
 	
     $scope.moreOptions = {
         journeyType : 0,
@@ -101,12 +104,8 @@ BaApp.controller('SearchController', function($scope,$filter, $mdDialog,$timeout
 			
 				$scope.parseIteneraryInformation(tempArry);
 			
-			}, function failed(error) {
-				 $scope.flightList = [];
-				if (error.status == 404) 
-					$rootScope.showNoFlights();
-				 else 
-					console.log(error);
+			}, function failed(err) {
+				$rootScope.showNoFlights();
 			});
 	}
 	
@@ -178,11 +177,6 @@ BaApp.controller('SearchController', function($scope,$filter, $mdDialog,$timeout
 			
 			timeDetails.start = $filter('date')(depTimeStamp, "hh:mm 'hrs'");
 			timeDetails.end = $filter('date')(arrTimeStamp, "hh:mm 'hrs'");
-			
-			console.log(dateDetails.start);
-			console.log(dateDetails.end);
-			console.log(timeDetails.start);
-			console.log(timeDetails.end);
 			
 			flightInfo.locDetails = locDetails;
 			flightInfo.timeDetails = timeDetails;

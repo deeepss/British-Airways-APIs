@@ -1,6 +1,4 @@
 <div ng-controller="QuickbookController">
-	<ng-map zoom="11"  center="myLocationInfo.pos" scrollwheel="false"
-	zoom-to-include-markers="true"></ng-map>
 	<md-autocomplete ng-model="dSearchLoc"
 		  ng-disabled="isDisabled"
 		  md-no-cache="noCache"
@@ -19,14 +17,40 @@
 	  No airports matching "{{dSearchText}}" were found.
 	</md-not-found>
 	</md-autocomplete>
-	<md-divider></md-divider>
-	<div class="md-padding">
-		<md-radio-group ng-model="mode" layout="row">
-		  <md-radio-button value="D" class="md-primary">Departure</md-radio-button>
-		  <md-radio-button value="A">Arrival</md-radio-button>
-		</md-radio-group>
+		<ng-map default-style="true" zoom="4"  center="myLocationInfo.pos">
+			<marker position="{{selectedAirport.Position.Latitude}},{{selectedAirport.Position.Longitude}}" icon="images/green-dot.png"></marker>
+
+			<marker ng-repeat="destination in allDestinations" position="{{destination.pos}}"
+				on-click="showDetails($index)">
+			</marker>
+			<info-window id="marker-info">
+				<div id="iw-container" ng-non-bindable style="text-transform: initial">
+                    <h3 class="iw-title">{{markerInfo.title}}</h3>
+					<ng-pluralize class="iw-subTitle" 
+								  count="markerInfo.flights.length" 
+								  when="{'one': '1 flight is available.', 'other': '{} flights are available.'}"> 
+					</ng-pluralize>
+					<md-list>
+						<md-list-item ng-repeat="flight in markerInfo.flights">
+							<div layout="column">
+								<h4>{{flight.arrStatus}} @ {{flight.aTerminal}}</h4>
+								<p>{{flight.arrDate}} @ {{flight.arrTime}}</p>
+							</div>
+							<div flex><img class="weather-icon" src="img/weather/01d.png"></div>
+							<md-button class="md-warn md-raised md-hue-2" 
+									   style="float:right; right : 20px" ng-click="getFlightInfo($index)">Book</md-button>
+							<md-divider></md-divider>
+						</md-list-item>
+					</md-list>
+				</div>
+			</info-window>
+		</ng-map>
+	<div layout="column" layout-wrap layout-gt-sm="row" >
+        <div flex-xs flex="70">
+			
+		</div>
+		<div flex-xs flex="30">
+			
+		</div>  
 	</div>
-	<md-content class="md-padding" 
-				ng-include="'templates/flights-availability.html'">
-	</md-content>
 </div>

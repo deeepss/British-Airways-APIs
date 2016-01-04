@@ -1,5 +1,20 @@
 var BaApp = angular.module('ba-app', ['ngMaterial', 'ngMessages', 'ngMap', 'ngCalander']);
 
+BaApp.filter('orderObjectBy', function() {
+  return function(items, field, reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    filtered.sort(function (a, b) {
+      return (a[field] > b[field] ? 1 : -1);
+    });
+    if(reverse) filtered.reverse();
+    return filtered;
+  };
+});
+
+
 BaApp.controller('HomeController', function($scope, $rootScope, $mdDialog, $mdMedia, LuftahnsaFactory){
     
     registerForPushNotifications();
@@ -189,7 +204,7 @@ BaApp.controller('HomeController', function($scope, $rootScope, $mdDialog, $mdMe
           }
         };
 
-        var pusher = new Pusher('36035f6737ab21579393', {
+        var pusher = new Pusher('<<Pudher ID>>', {
           encrypted: true
         });
 

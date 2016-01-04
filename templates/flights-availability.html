@@ -3,14 +3,14 @@
 		<p>{{flight.flightNumber}}</p>
 		<md-list id="sector-list">
 			<md-list-item class="md-3-line" ng-repeat="sector in flight.sectors">
-				<div class="md-list-item-text" layout="column"  flex="50">
-				  	<h3>{{sector.dAirportName}} ({{sector.dAirportCode}})</h3>
-					<h4>{{sector.depStatus}} at Terminal {{sector.dTerminal}}</h4>
+				<div class="md-list-item-text leftDivider" layout="column"  flex="50">
+				  	<h3>{{sector.dAirportCode}}</h3>
+					<h4>{{sector.depStatus}} @ <br> Terminal {{sector.dTerminal}}</h4>
 					<p>{{sector.depDate}}<br>{{sector.depTime}}</p>
 				</div>
-				<div class="md-list-item-text" layout="column"  flex="50">
-				    <h3>{{sector.aAirportName}} ({{sector.aAirportCode}})</h3>
-					<h4>{{sector.arrStatus}}  {{sector.aTerminal}}</h4>	
+				<div class="md-list-item-text rightDivider" layout="column"  flex="50">
+					<h3>{{sector.aAirportCode}}</h3>
+					<h4>{{sector.arrStatus}} @ <br> {{sector.aTerminal}}</h4>	
 					<p>{{sector.arrDate}}<br>{{sector.arrTime}}</p>
 				</div>
 				<md-divider ng-hide="$index == (flight.sectors.length - 1)"></md-divider>
@@ -19,3 +19,19 @@
 		<md-divider id="itenerary-divider"></md-divider>
 	</md-list-item>
 </md-list> 
+
+<style>
+	#sector-list {
+		width : 100%;
+	}
+	
+	.leftDivider {
+		border-right:1px solid #16222c; 
+		padding-right: 20px;
+	}
+	
+	.rightDivider {
+		border-left	:1px solid #16222c; 
+		padding-left: 20px;
+	}
+</style>
